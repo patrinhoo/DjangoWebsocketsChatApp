@@ -1,0 +1,158 @@
+body {
+    background: linear-gradient(90deg, rgba(0,255,68,0.4) 0%, rgba(5,255,0,0.9) 50%, rgba(0,255,68,0.4) 100%);
+}
+
+::-webkit-scrollbar {
+    width: 0.5em;
+}
+   
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 100vw;
+}
+   
+::-webkit-scrollbar-thumb {
+    background-color: rgb(245, 245, 245);
+    outline: 1px solid rgb(160, 160, 160);
+    border-radius: 100vw;
+}
+
+.login-form{
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-up {
+    height: 80px;
+    background-color: #eeeeee;
+}
+
+.conversations {
+    height: calc(100% - 80px);
+    background-color: #f8f8f8;
+    overflow-y: auto;
+}
+
+.conversations-header {
+    height: 70px;
+    background-image: radial-gradient(circle at center center, rgba(217, 217, 217,0.05) 0%, rgba(217, 217, 217,0.05) 15%,rgba(197, 197, 197,0.05) 15%, rgba(197, 197, 197,0.05) 34%,rgba(178, 178, 178,0.05) 34%, rgba(178, 178, 178,0.05) 51%,rgba(237, 237, 237,0.05) 51%, rgba(237, 237, 237,0.05) 75%,rgba(138, 138, 138,0.05) 75%, rgba(138, 138, 138,0.05) 89%,rgba(158, 158, 158,0.05) 89%, rgba(158, 158, 158,0.05) 100%),radial-gradient(circle at center center, rgb(255,255,255) 0%, rgb(255,255,255) 6%,rgb(255,255,255) 6%, rgb(255,255,255) 12%,rgb(255,255,255) 12%, rgb(255,255,255) 31%,rgb(255,255,255) 31%, rgb(255,255,255) 92%,rgb(255,255,255) 92%, rgb(255,255,255) 97%,rgb(255,255,255) 97%, rgb(255,255,255) 100%); background-size: 42px 42px;
+}
+
+.content-up {
+    height: 80px;
+    background-color: #eeeeee;
+}
+
+.content-down {
+    height: calc(100% - 140px);
+    background-image: radial-gradient(circle at center center, rgba(217, 217, 217,0.05) 0%, rgba(217, 217, 217,0.05) 15%,rgba(197, 197, 197,0.05) 15%, rgba(197, 197, 197,0.05) 34%,rgba(178, 178, 178,0.05) 34%, rgba(178, 178, 178,0.05) 51%,rgba(237, 237, 237,0.05) 51%, rgba(237, 237, 237,0.05) 75%,rgba(138, 138, 138,0.05) 75%, rgba(138, 138, 138,0.05) 89%,rgba(158, 158, 158,0.05) 89%, rgba(158, 158, 158,0.05) 100%),radial-gradient(circle at center center, rgb(255,255,255) 0%, rgb(255,255,255) 6%,rgb(255,255,255) 6%, rgb(255,255,255) 12%,rgb(255,255,255) 12%, rgb(255,255,255) 31%,rgb(255,255,255) 31%, rgb(255,255,255) 92%,rgb(255,255,255) 92%, rgb(255,255,255) 97%,rgb(255,255,255) 97%, rgb(255,255,255) 100%); background-size: 42px 42px;
+    overflow-y: auto;
+}
+
+.friend-on-list{
+    height: 80px;
+}
+
+.friend-on-list:hover{
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.friend-img{
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.last-msg-date{
+    font-size: small;
+}
+
+.new-msg{
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    background: rgb(0,255,68);
+    color : white;
+    padding : 4px 12px;
+    display: none;
+}
+
+.actual-img{
+    margin-top: 8px;
+    width: 60px;
+    height: 60px;
+}
+
+.my-msg{
+    background: rgba(0,255,68,0.4);
+    border-radius: 10px;
+    max-width: 75%;
+    width: fit-content;
+}
+
+.friend-msg {
+    background: rgba(220, 220, 220, 0.6);
+    border-radius: 10px;
+    max-width: 75%;
+    width: fit-content;
+}
+
+.msg-area{
+    height: 60px;
+    background: rgb(200, 200, 200);
+    border-top: 1px solid rgb(180, 180, 180);
+}
+
+.add-friend{
+    height: calc(100% - 80px);
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    display: none;
+}
+
+.add-friend-btn{
+    background-color: rgb(0,255,68) !important;
+    color: #ffffff !important;
+}
+
+.add-friend-btn:hover{
+    background-color: rgb(0,225,38) !important;
+}
+
+.add-friend-input-area{
+    background-image: radial-gradient(circle at center center, rgba(217, 217, 217,0.05) 0%, rgba(217, 217, 217,0.05) 15%,rgba(197, 197, 197,0.05) 15%, rgba(197, 197, 197,0.05) 34%,rgba(178, 178, 178,0.05) 34%, rgba(178, 178, 178,0.05) 51%,rgba(237, 237, 237,0.05) 51%, rgba(237, 237, 237,0.05) 75%,rgba(138, 138, 138,0.05) 75%, rgba(138, 138, 138,0.05) 89%,rgba(158, 158, 158,0.05) 89%, rgba(158, 158, 158,0.05) 100%),radial-gradient(circle at center center, rgb(255,255,255) 0%, rgb(255,255,255) 6%,rgb(255,255,255) 6%, rgb(255,255,255) 12%,rgb(255,255,255) 12%, rgb(255,255,255) 31%,rgb(255,255,255) 31%, rgb(255,255,255) 92%,rgb(255,255,255) 92%, rgb(255,255,255) 97%,rgb(255,255,255) 97%, rgb(255,255,255) 100%); background-size: 42px 42px;
+}
+
+.my-profile{
+    height: calc(100% - 80px);
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    display: none;
+}
+
+.friend-requests{
+    height: calc(100% - 80px);
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    display: none;
+}
+
+.friend-request-list{
+    height: 80px;
+}
+
+.friend-request-list:hover{
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.accept-btn{
+    background-color: rgb(0,255,68) !important;
+    color: #ffffff !important;
+}
+
+.accept-btn:hover {
+    background-color: rgb(0,225,38) !important;
+}
+

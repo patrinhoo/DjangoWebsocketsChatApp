@@ -1,0 +1,186 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+{{ request.user.id|json_script:"user_id" }}
+
+<div class="container bg-light h-100 border">
+    <div class="row h-100">
+        <!-- COLUMN 1 -->
+        <div class="container col-xl-4 col-lg-5 col-6 h-100 p-0 border">
+            <div class="nav-up">
+                <div class="h-100 row w-100 m-0 border">
+                    <div class="h-100 col-6">
+                        <img src="{{request.user.userprofile.avatar.url}}" alt="" class="friend-img rounded-circle h-75 mx-auto d-block">
+                    </div>
+
+                    <div class="col-6">
+                        <div class="btn-group mt-3 float-end">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Opcje
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item btn text-center show-conversations">Konwersacje</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item btn text-center show-add-friend">Dodaj znajomego</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item btn text-center show-friend-requests">Zaproszenia</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item btn text-center show-my-profile">Mój profil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item btn text-center" href="{% url 'logout' %}">Wyloguj</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONVERSATIONS -->
+            <div class="conversations">
+                <div class="conversations-header text-center fw-bold h6 m-0 p-4">
+                    MOJE KONWERSACJE
+                </div>
+
+                {% for friend in friends %}
+                <div id="{{friend.user.id}}" class="friend-on-list row w-100 m-0 border">
+                    <div class="h-100 col-3">
+                        <img src="{{friend.avatar.url}}" alt="" class="friend-img rounded-circle h-75">
+                    </div>
+                    <div class="col-5">
+                        <div class="d-flex align-items-center h-100 fw-bold">
+                            {{friend.name}}
+                        </div>
+                    </div>
+                    <div class="col-4 fs-6 d-flex align-items-center justify-content-center">
+                        <div class="new-msg">
+                            !
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+               
+            </div>
+
+            <!-- ADD FRIEND -->
+            <div class="add-friend">
+                <div class="add-friend-input-area input-group p-3 border-bottom">
+                    <input id="search-friend-input" type="text" class="form-control rounded-pill me-md-3 me-2" placeholder="Nazwa użytkownika...">
+                    <div class="input-group-append">
+                        <button id="search-friend-btn" type="button" class="btn btn-primary">Szukaj</button>
+                    </div>
+                </div>
+
+                <div id="friends-found-wrapper">
+                    
+                </div>
+                
+            </div>
+
+            <!-- FRIEND REQUESTS -->
+            <div class="friend-requests">
+                <div class="conversations-header text-center fw-bold h6 m-0 p-4">
+                    OTRZYMANE ZAPROSZENIA
+                </div>
+
+                <div class="received-requests">
+                    {% if friend_request_received %}
+                        {% for friend_request in friend_request_received %}
+                        <div class="friend-request-list row w-100 m-0 border">
+                            <div class="h-100 col-3">
+                                <img src="{{friend_request.sender.userprofile.avatar.url}}" alt="" class="friend-img rounded-circle h-75">
+                            </div>
+                            <div class="col-5">
+                                <div class="d-flex align-items-center h-100 fw-bold">
+                                    {{friend_request.sender.userprofile.name}}
+                                </div>
+                            </div>
+                            <div class="col-4 fs-6 d-flex align-items-center justify-content-center">
+                                <div id="{{friend_request.sender.id}}" class="btn m-md-2 m-0 accept-btn">
+                                    &#10003;
+                                </div>
+                                <div id="{{friend_request.sender.id}}" class="btn btn-danger reject-btn">
+                                    &#10005;
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="conversations-header text-center fw-bold h6 m-0 p-4">
+                    WYSŁANE ZAPROSZENIA
+                </div>
+
+                <div class="send-requests">
+                    {% if friend_request_send %}
+                        {% for friend_request in friend_request_send %}
+                        <div class="friend-request-list row w-100 m-0 border">
+                            <div class="h-100 col-3">
+                                <img src="{{friend_request.target.userprofile.avatar.url}}" alt="" class="friend-img rounded-circle h-75">
+                            </div>
+                            <div class="col-5">
+                                <div class="d-flex align-items-center h-100 fw-bold">
+                                    {{friend_request.target.userprofile.name}}
+                                </div>
+                            </div>
+                            <div class="col-4 fs-6 d-flex align-items-center justify-content-center">
+                                <div id="{{friend_request.target.id}}"  class="btn btn-danger undo-btn">
+                                    COFNIJ
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+               
+            </div>
+
+            <!-- MY PROFILE -->
+            <form method="POST" class="my-profile" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="form-label text-center d-block mt-3 fw-bold">Nazwa użytkownika</label>
+                <div class="me-lg-4 ms-lg-4 me-3 ms-3">
+                    <input id="username-input" name="name" type="text" class="form-control text-center" value="{{request.user.userprofile.name}}">
+                </div>
+
+                <label class="form-label text-center d-block mt-5 fw-bold">Zdjęcie profilowe</label>
+                <img src="{{request.user.userprofile.avatar.url}}" alt="" class="img-rounded w-50 mx-auto d-block my-4">
+                <div class="me-lg-4 ms-lg-4 me-3 ms-3">
+                    <input name="avatar" class="form-control" type="file" id="formFile">
+                </div>
+
+                <div class="mt-5">
+                    <button id="update-profile-btn" type="submit" class="btn btn-primary mx-auto d-block">Zapisz</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- COLUMN 2 - ACTUAL CONVERSATION -->
+        <div class="container bg-white col-xl-8 col-lg-7 col-6 h-100 p-0 border">
+            <div class="content-up row m-0">
+                <div class="col-lg-2 col-md-3 col-4 h-100">
+                    <img id="actual-conversation-img" alt="" class="actual-img rounded-circle h-75">
+                </div>
+                <div class="col-lg-10 col-md-9 col-8">
+                    <div id="actual-conversation" class="h-75 mt-2 d-flex align-items-center fw-bold">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="messages-wrapper" class="content-down">
+                
+            </div>
+
+            <div class="input-group msg-area py-2">
+                <input type="text" class="form-control ms-xl-4 ms-2 me-xl-4 me-2 mt-1 rounded-pill msg-input" placeholder="Napisz wiadomość...">
+                <div class="input-group-append mt-1">
+                    <button type="button" class="btn btn-primary me-xl-4 me-2 send-msg">Wyślij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

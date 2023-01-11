@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <form method="POST" class="login-form p-5 border border-success rounded-3 text-center">
+        {% csrf_token %}
+        <div class="h3 mb-4">
+            REJESTRACJA
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="mb-3 text-danger small">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Nazwa użytkownika">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password1" placeholder="Hasło">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password2" placeholder="Powtórz hasło">
+        </div>
+
+        <div id="emailHelp" class="form-text">Masz już konto?</div>
+        <div id="emailHelp" class="form-text">Zaloguj się <a href="{% url 'login' %}" class="btn btn-secondary btn-sm">tutaj</a></div>
+
+        <button type="submit" class="btn btn-primary mt-4">Zarejestruj</button>
+    </form>
+</div>
+
+{% endblock content %}

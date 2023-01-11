@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container h-100 d-flex justify-content-center align-items-center">
+    <form method="POST" class="login-form p-5 border border-success rounded-3 text-center">
+        {% csrf_token %}
+        <div class="h3 mb-4">
+            LOGIN
+        </div>
+
+        {% if form.errors %}
+        <div class="mb-3 text-danger small">Nazwa użytkownika lub hasło są niepoprawne!</div>
+        {% endif %}
+
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Nazwa użytkownika">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Hasło">
+        </div>
+       
+        <div id="emailHelp" class="form-text">Nie masz jeszcze konta?</div>
+        <div id="emailHelp" class="form-text">Załóż je <a href="{% url 'register' %}" class="btn btn-secondary btn-sm">tutaj</a></div>
+
+        <button type="submit" class="btn btn-primary mt-4">Zaloguj</button>
+        
+
+    </form>
+</div>
+
+{% endblock content %}
