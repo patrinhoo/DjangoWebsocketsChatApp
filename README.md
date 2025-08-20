@@ -1,21 +1,6 @@
 # WebsocketsChatApp
 
 This is a Chat App developed with Django and Django Channels  
-You can test this app at:  https://djangowebsocketschatapp.herokuapp.com/
-
-## Testing
-Use the following credentials to test the application:
-
-```
-Username: testuser1
-Password: testpassword1
-```
-
-```
-Username: testuser2
-Password: testpassword2
-```
-
 
 ## Short Demonstration 
 
